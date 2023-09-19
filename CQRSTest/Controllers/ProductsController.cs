@@ -3,7 +3,6 @@ using CQRSTest.CQRS.Query;
 using CQRSTest.Domain;
 using CQRSTest.Notification;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQRSTest.Controllers
@@ -33,6 +32,18 @@ namespace CQRSTest.Controllers
             var product = await _mediator.Send(new GetProductByIdQuery(id));
             return Ok(new{ product, date=  DateTime.UtcNow.AddHours(1)
         });
+        }
+
+
+        [HttpGet(Name = "GetAllsProduct")]
+        public async Task<ActionResult> GetAllsProduct()
+        {
+            var product = await _mediator.Send(new  GetProductsQuery());
+            return Ok(new
+            {
+                product,
+                date = DateTime.UtcNow.AddHours(1)
+            });
         }
     }
 }
