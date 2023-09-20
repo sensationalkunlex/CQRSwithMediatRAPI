@@ -1,7 +1,8 @@
-﻿using CQRSTest.Domain;
+﻿using CQRSTest.CQRS.Query;
+using CQRSTest.Domain;
 using MediatR;
 
-namespace CQRSTest.CQRS.Query
+namespace CQRSTest.CQRS.Handler
 {
     public class GetProductsHandler : IRequestHandler<GetProductsQuery, IEnumerable<Product>>
     {
